@@ -1,5 +1,7 @@
 package;
 
+import flixel.addons.plugin.taskManager.FlxTask;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import haxe.display.Display.Keyword;
@@ -10,15 +12,13 @@ using StringTools;
 
 class KeybindState extends MusicBeatState
 {
-    // Done in order of how arrows appear in-game
-    var keyDisplay:FlxText;
-    //                             0       1      2     3
-    var keyText:Array<String> = ["LEFT", "DOWN", "UP", "RIGHT"];
+    var keyText:Array<String> = ["Left", "Down", "Up", "Right"];    // WHY DOES THIS SHIT COUNT 1, 2, 3, 4?????
     var defaultKeys:Array<String> = ["A", "S", "W", "D"];
     var keyBlacklist:Array<String> = ["ENTER", "BACKSPACE", "ESCAPE", "C", "R"];
     var keys:Array<String>;
 
     var curSelected:Int = 0;
+    var grpKeyDisplays:FlxTypedGroup<FlxText>;
 
     var tempKey:String = "";
     var state:String = "select";
@@ -41,12 +41,24 @@ class KeybindState extends MusicBeatState
         menuBG.antialiasing = true;
         add(menuBG);
 
+        grpKeyDisplays = new FlxTypedGroup<FlxText>();
+        add(grpKeyDisplays);
 
-        // TODO: Add FNF styled font as opposed to VCR-OSD
-        keyDisplay = new FlxText(0, 0, 1280, "", 72);
-        keyDisplay.scrollFactor.set(0, 0);
-        keyDisplay.setFormat(Paths.font('vcr.ttf'), 42, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        add(keyDisplay);
+        for (i in 0...4)
+        {
+            var keyDisplay = new FlxText(10, 20 + (i * 70), " ");
+            keyDisplay.setFormat(Paths.font("vcr.ttf"), 40, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+            keyDisplay.ID = i;
+            keyDisplay.x += 30;
+            keyDisplay.alpha = 0.5;
+
+            grpKeyDisplays.add(keyDisplay);
+        }
+        
+        // TODO: ADD SELECTION INDICATOR GRAPHICS
+        // (Just waiting for TSG on this one)
+
+
     }
 
     override function update(elapsed:Float) 
@@ -114,21 +126,24 @@ class KeybindState extends MusicBeatState
                 state = "select";
         }
 
+
+        // Change alpha for selected item
+        for (i in 0...4)
+        {
+            grpKeyDisplays.members[i].alpha = 0.5;
+        }
+
+        grpKeyDisplays.members[curSelected].alpha = 1;
+
         super.update(elapsed);
     }
 
     function txtUpdate()
     {
-        // Borrowed from FNF HD
-        keyDisplay.text = "\n\n";
-
-        for (i in 0...3)
+        for (i in 0...4)
         {
-            var txtStart = (i == curSelected) ? ">" : " ";
-            keyDisplay.text += txtStart + keyText[i] + ": " + ((keys[i] != keyText[i]) ? (keys[i] + " + ") : "") + keyText[i] + " ARROW\n";
+            grpKeyDisplays.members[i].text = keyText[i] + ": " + keys[i];
         }
-
-        keyDisplay.screenCenter();
     }
 
     function save()
@@ -137,7 +152,7 @@ class KeybindState extends MusicBeatState
         STOptionsRewrite._variables.downBind = keys[1];
         STOptionsRewrite._variables.leftBind = keys[0];
         STOptionsRewrite._variables.rightBind = keys[3];
-        PlayerSettings.player1.controls.loadBinds();
+        PlayerSettings.player1.controls.loadBinds(); 
     }
 
     function addKey(key:String)
