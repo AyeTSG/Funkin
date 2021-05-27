@@ -137,7 +137,7 @@ class KeybindState extends MusicBeatState
         STOptionsRewrite._variables.downBind = keys[1];
         STOptionsRewrite._variables.leftBind = keys[0];
         STOptionsRewrite._variables.rightBind = keys[3];
-        PlayerSettings.player1.controls.loadBinds();;    // Set new binds through PlayerSettings
+        PlayerSettings.player1.controls.loadBinds();
     }
 
     function addKey(key:String)

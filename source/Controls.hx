@@ -644,10 +644,10 @@ class Controls extends FlxActionSet
 
 		// NOTE TO SELF: FUCKING REMEMBER THAT WE'RE USING THE WEEK 7 INPUT SYSTEM OH MY GOD
 		// I SPENT LIKE AN HOUR TRYING TO TROUBLESHOOT KEYS NOT BINDING LMAOOO
-		inline bindKeys(Control.NOTE_UP, [FlxKey.fromString(STOptionsRewrite._variables.upBind)]);
-		inline bindKeys(Control.NOTE_DOWN, [FlxKey.fromString(STOptionsRewrite._variables.downBind)]);
-		inline bindKeys(Control.NOTE_LEFT, [FlxKey.fromString(STOptionsRewrite._variables.leftBind)]);
-		inline bindKeys(Control.NOTE_RIGHT, [FlxKey.fromString(STOptionsRewrite._variables.rightBind)]);
+		inline bindKeys(Control.NOTE_UP, [FlxKey.fromString(STOptionsRewrite._variables.upBind), FlxKey.UP]);
+		inline bindKeys(Control.NOTE_DOWN, [FlxKey.fromString(STOptionsRewrite._variables.downBind), FlxKey.DOWN]);
+		inline bindKeys(Control.NOTE_LEFT, [FlxKey.fromString(STOptionsRewrite._variables.leftBind), FlxKey.LEFT]);
+		inline bindKeys(Control.NOTE_RIGHT, [FlxKey.fromString(STOptionsRewrite._variables.rightBind), FlxKey.RIGHT]);
 
 		// Default FNF binds
 		inline bindKeys(Control.UP, [W, FlxKey.UP]);
