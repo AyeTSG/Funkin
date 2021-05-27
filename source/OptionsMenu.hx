@@ -46,7 +46,7 @@ class OptionsMenu extends MusicBeatState
 		optionsTitle.frames = Paths.getSparrowAtlas('FNF_main_menu_assets');
 		optionsTitle.animation.addByPrefix('title', "options white", 15);
 		optionsTitle.animation.play('title');
-		optionsTitle.x = 345;
+		optionsTitle.x = 325;
 		optionsTitle.y = 100;
 		add(optionsTitle);
 
