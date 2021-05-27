@@ -122,12 +122,14 @@ class OptionsMenu extends MusicBeatState
 					FlxG.switchState(new GameplayOptionsState());
 				case 1:
 					FlxG.switchState(new MiscOptionsState());
+				case 2:
+					FlxG.switchState(new KeybindState());
 			}
 		}
 
 		if (controls.BACK) {
 			STOptionsRewrite.Save();
-			PlayerSettings.player1.controls.setKeyboardScheme(Controls.KeyboardScheme.Solo);
+			PlayerSettings.player1.controls.loadBinds();
 			FlxG.switchState(new MainMenuState());
 		}
 
