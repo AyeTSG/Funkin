@@ -22,7 +22,6 @@ typedef Variables = {
     var fixScoreLayout:Bool;
     var fixWeek6CountSounds:Bool;
     var hideOptionsMenu:Bool;
-    var inputMode:Int;
     var instMode:Bool;
     var logNG:Bool;
     var lyrics:Bool;
@@ -71,7 +70,6 @@ class STOptionsRewrite
                 fixScoreLayout: true,
                 fixWeek6CountSounds: true,
                 hideOptionsMenu: false,
-                inputMode: 0,
                 instMode: false,
                 logNG: true,
                 lyrics: true,
