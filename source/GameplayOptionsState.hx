@@ -8,7 +8,6 @@ class GameplayOptionsState extends MusicBeatState
 {
     // Basically has the same format as the original OptionsMenu state
     var curSelected:Int = 0;
-    var inputGraphic:FlxSprite;
 
     var grpOptionsTxt:FlxTypedGroup<Alphabet>;
     var grpOptionsIndicator:FlxTypedGroup<FlxSprite>;
