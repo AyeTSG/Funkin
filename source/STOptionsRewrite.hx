@@ -7,6 +7,9 @@ import sys.io.File;
 // Hey, alot of this is based on Mic'd Up's implementation of options
 // so credits to them i guess
 
+// The custom keybinds system is based off of FNF HD's implementation
+// https://github.com/Smokey555/FNF-HD-Open-Source
+
 // variables type
 typedef Variables = {
     var customIntro:Bool;
@@ -35,6 +38,10 @@ typedef Variables = {
     var missCounter:Bool;
     var accuracyMeter:Bool;
     var downscroll:Bool;
+    var upBind:String;
+    var downBind:String;
+    var leftBind:String;
+    var rightBind:String;
 }
 
 class STOptionsRewrite
@@ -79,7 +86,11 @@ class STOptionsRewrite
                 updatedInputSystem: true,
                 missCounter: true,
                 accuracyMeter: true,
-                downscroll: false
+                downscroll: false,
+                upBind: "W",
+                downBind: "S",
+                leftBind: "A",
+                rightBind: "D"
             };
 
             // save defaults to file
