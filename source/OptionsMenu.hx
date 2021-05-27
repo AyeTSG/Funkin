@@ -23,16 +23,9 @@ class OptionsMenu extends MusicBeatState
 
 	// TODO: Add better array for Small Thing's options.
 	var textMenuItems:Array<String> = [
-		'Debug Mode',			// 0
-		'Discord RPC',			// 1
-		'Extra Dialogue', 		// 2
-		'Extra Songs',			// 3
-		'Input Mode',			// 4
-		'Instrumental Mode',	// 5
-		'Lyrics',				// 6
-		'Song Indicator',		// 7
-		'Unknown Icons',		// 8
-		'MISC OPTIONS'
+		"Gameplay Options",	// 0
+		"Misc Options",		// 1
+		"Control Options"	// 2
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -95,22 +88,6 @@ class OptionsMenu extends MusicBeatState
 
 			grpOptionsIndicator.add(optionIndicator);
 		}
-
-		// input mode graphic
-		inputGraphic = new FlxSprite(grpOptionsTexts.members[4].x, grpOptionsTexts.members[4].y);
-		inputGraphic.frames = Paths.getSparrowAtlas('st_ui_assets');
-		inputGraphic.animation.addByPrefix("wasd", "wasd", 24, false);
-		inputGraphic.animation.addByPrefix("dfjk", "dfjk", 24, false);
-		inputGraphic.antialiasing = true;
-		inputGraphic.animation.play("wasd"); // default anim, will get changed later
-		inputGraphic.scale.x = 0.75;
-		inputGraphic.scale.y = 0.75;
-		inputGraphic.x += 592;
-		inputGraphic.y += -12;
-		inputGraphic.alpha = 0.6;
-
-		add(inputGraphic);
-
 		super.create();
 
 		// Yaknow what, fuck you! *un-substates your menu*
@@ -141,66 +118,9 @@ class OptionsMenu extends MusicBeatState
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			
 			switch (curSelected) {
-				// I didn't wanna do this all manually, but, well, here we are.
 				case 0:
-					if (STOptionsRewrite._variables.debug == false) {
-						STOptionsRewrite._variables.debug = true;
-					} else {
-						STOptionsRewrite._variables.debug = false;
-					}
+					FlxG.switchState(new GameplayOptionsState());
 				case 1:
-					if (STOptionsRewrite._variables.discordRPC == false) {
-						STOptionsRewrite._variables.discordRPC = true;
-					} else {
-						STOptionsRewrite._variables.discordRPC = false;
-					}
-				case 2:
-					if (STOptionsRewrite._variables.extraDialogue == false) {
-						STOptionsRewrite._variables.extraDialogue = true;
-					} else {
-						STOptionsRewrite._variables.extraDialogue = false;
-					}
-				case 3:
-					if (STOptionsRewrite._variables.extraSongs == false) {
-						STOptionsRewrite._variables.extraSongs = true;
-					} else {
-						STOptionsRewrite._variables.extraSongs = false;
-					}
-				case 4:
-					if (STOptionsRewrite._variables.inputMode == 0) {
-						//grpOptionsTexts.members[4].text = "Input Mode DFJK";
-						inputGraphic.animation.play("dfjk");
-						STOptionsRewrite._variables.inputMode = 1;
-					} else {
-						//grpOptionsTexts.members[4].text = "Input Mode WASD";
-						inputGraphic.animation.play("wasd");
-						STOptionsRewrite._variables.inputMode = 0;
-					}
-				case 5:
-					if (STOptionsRewrite._variables.instMode == false) {
-						STOptionsRewrite._variables.instMode = true;
-					} else {
-						STOptionsRewrite._variables.instMode = false;
-					}
-				case 6:
-					if (STOptionsRewrite._variables.lyrics == false) {
-						STOptionsRewrite._variables.lyrics = true;
-					} else {
-						STOptionsRewrite._variables.lyrics = false;
-					}
-				case 7:
-					if (STOptionsRewrite._variables.songIndicator == false) {
-						STOptionsRewrite._variables.songIndicator = true;
-					} else {
-						STOptionsRewrite._variables.songIndicator = false;
-					}
-				case 8:
-					if (STOptionsRewrite._variables.unknownIcons == false) {
-						STOptionsRewrite._variables.unknownIcons = true;
-					} else {
-						STOptionsRewrite._variables.unknownIcons = false;
-					}
-				case 9:
 					FlxG.switchState(new MiscOptionsState());
 			}
 		}
@@ -211,66 +131,10 @@ class OptionsMenu extends MusicBeatState
 			FlxG.switchState(new MainMenuState());
 		}
 
-		// graphic updaters
-		if (STOptionsRewrite._variables.debug == false) {
-			grpOptionsIndicator.members[0].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[0].animation.play("true");
-		}
-
-		if (STOptionsRewrite._variables.discordRPC == false) {
-			grpOptionsIndicator.members[1].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[1].animation.play("true");
-		}
-
-		if (STOptionsRewrite._variables.extraDialogue == false) {
-			grpOptionsIndicator.members[2].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[2].animation.play("true");
-		}
-
-		if (STOptionsRewrite._variables.extraSongs == false) {
-			grpOptionsIndicator.members[3].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[3].animation.play("true");
-		}
-
-		if (STOptionsRewrite._variables.inputMode == 0) {
-			inputGraphic.animation.play("wasd");
-		} else {
-			inputGraphic.animation.play("dfjk");
-		}
-
-		if (STOptionsRewrite._variables.instMode == false) {
-			grpOptionsIndicator.members[5].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[5].animation.play("true");
-		}
-
-		if (STOptionsRewrite._variables.lyrics == false) {
-			grpOptionsIndicator.members[6].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[6].animation.play("true");
-		}
-
-		if (STOptionsRewrite._variables.songIndicator == false) {
-			grpOptionsIndicator.members[7].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[7].animation.play("true");
-		}
-
-		if (STOptionsRewrite._variables.unknownIcons == false) {
-			grpOptionsIndicator.members[8].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[8].animation.play("true");
-		}
-
 		// alpha shit
 		for (i in 0...textMenuItems.length) {
 			grpOptionsTexts.members[i].alpha = 0.6;
 			grpOptionsIndicator.members[i].alpha = 0.6;
-			inputGraphic.alpha = 0.6;
 		}
 
 		grpOptionsTexts.members[curSelected].alpha = 1;
@@ -278,40 +142,5 @@ class OptionsMenu extends MusicBeatState
 
 		if (curSelected == 4)
 			inputGraphic.alpha = 1;
-	}
-
-	function changeSelection(change:Int = 0)
-	{
-		#if !switch
-		// NGio.logEvent('Fresh');
-		#end
-
-		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-
-		curSelected += change;
-
-		if (curSelected < 0)
-			curSelected = grpControls.length - 1;
-		if (curSelected >= grpControls.length)
-			curSelected = 0;
-
-		// selector.y = (70 * curSelected) + 30;
-
-		var bullShit:Int = 0;
-
-		for (item in grpControls.members)
-		{
-			item.targetY = bullShit - curSelected;
-			bullShit++;
-
-			item.alpha = 0.6;
-			// item.setGraphicSize(Std.int(item.width * 0.8));
-
-			if (item.targetY == 0)
-			{
-				item.alpha = 1;
-				// item.setGraphicSize(Std.int(item.width));
-			}
-		}
 	}
 }
