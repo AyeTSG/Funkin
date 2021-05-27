@@ -1078,45 +1078,73 @@ class PlayState extends MusicBeatState
 				case 'tutorial':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'bopeebo':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'fresh':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'dadbattle':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'spookeez':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'south':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'pico':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'philly-nice':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'blammed':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'satin-panties':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'high':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'milf':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'cocoa':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'eggnog':
 					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
+					else
+						startCountdown();
 				case 'senpai':
 					doDialogue(doof);
 				case 'roses':

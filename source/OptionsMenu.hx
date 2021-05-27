@@ -210,10 +210,7 @@ class OptionsMenu extends MusicBeatState
 
 		if (controls.BACK) {
 			STOptionsRewrite.Save();
-			// ONCE AGAIN, I HAVE BESTED MusicBeatState.hx, FORCING THE PlayerSettings.hx INTO DOING
-			// THE BIDDING THAT MusicBeatState.hx PREVENTED!
 			PlayerSettings.player1.controls.setKeyboardScheme(Controls.KeyboardScheme.Solo);
-			trace("SAVED & CHANGED KEYBINDS!");
 			FlxG.switchState(new MainMenuState());
 		}
 

@@ -22,7 +22,7 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	// small things: version
-	public static var smallThingsVersion:String = "3.0";
+	public static var smallThingsVersion:String = "3.0.1";
 
 	var curSelected:Int = 0;
 
