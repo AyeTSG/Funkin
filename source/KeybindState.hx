@@ -1,5 +1,6 @@
 package;
 
+import openfl.sensors.Accelerometer;
 import flixel.addons.plugin.taskManager.FlxTask;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
@@ -18,7 +19,9 @@ class KeybindState extends MusicBeatState
     var keys:Array<String>;
 
     var curSelected:Int = 0;
+
     var grpKeyDisplays:FlxTypedGroup<FlxText>;
+    var grpSelectedIndicators:FlxTypedGroup<FlxSprite>;
 
     var tempKey:String = "";
     var state:String = "select";
@@ -46,7 +49,7 @@ class KeybindState extends MusicBeatState
 
         for (i in 0...4)
         {
-            var keyDisplay = new FlxText(10, 20 + (i * 70), " ");
+            var keyDisplay = new FlxText(45, 30 + (i * 70), " ");
             keyDisplay.setFormat(Paths.font("vcr.ttf"), 40, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
             keyDisplay.ID = i;
             keyDisplay.x += 30;
@@ -55,8 +58,32 @@ class KeybindState extends MusicBeatState
             grpKeyDisplays.add(keyDisplay);
         }
         
-        // TODO: ADD SELECTION INDICATOR GRAPHICS
-        // (Just waiting for TSG on this one)
+        // Add selection idicator graphics
+        grpSelectedIndicators = new FlxTypedGroup<FlxSprite>();
+        add(grpSelectedIndicators);
+
+        for (i in 0...4)
+        {
+            var selectedIndicator:FlxSprite = new FlxSprite(16, 20 + (i * 70));
+            selectedIndicator.ID = i;
+
+            // Create animation for the selected indicator
+            selectedIndicator.frames = Paths.getSparrowAtlas('st_ui_assets');
+            selectedIndicator.animation.addByPrefix("selected", "netural", 24, false);  // Gonna kill TSG for misspelling this AAAAAAAA
+
+            // Default animation
+            selectedIndicator.animation.play("selected");
+
+            selectedIndicator.scale.x = 0.4;
+            selectedIndicator.scale.y = 0.4;
+
+            selectedIndicator.x -= 88;
+            selectedIndicator.y -= 26;
+
+            selectedIndicator.visible = false;
+
+            grpSelectedIndicators.add(selectedIndicator);
+        }
 
 
     }
@@ -131,9 +158,11 @@ class KeybindState extends MusicBeatState
         for (i in 0...4)
         {
             grpKeyDisplays.members[i].alpha = 0.5;
+            grpSelectedIndicators.members[i].visible = false;
         }
 
         grpKeyDisplays.members[curSelected].alpha = 1;
+        grpSelectedIndicators.members[curSelected].visible = true;
 
         super.update(elapsed);
     }
