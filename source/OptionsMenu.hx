@@ -208,7 +208,6 @@ class OptionsMenu extends MusicBeatState
 		if (controls.BACK) {
 			STOptionsRewrite.Save();
 			PlayerSettings.player1.controls.setKeyboardScheme(Controls.KeyboardScheme.Solo);
-			trace("SAVED & CHANGED KEYBINDS!");
 			FlxG.switchState(new MainMenuState());
 		}
 
