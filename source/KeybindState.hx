@@ -37,7 +37,7 @@ class KeybindState extends MusicBeatState
 
         // Set menu BG
         var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-        menuBG.color = 0xFFea71fd;
+        menuBG.color = 0x7a58b0;
         menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
         menuBG.updateHitbox();
         menuBG.screenCenter();
@@ -190,19 +190,10 @@ class KeybindState extends MusicBeatState
         var notAllowed:Array<String> = [];
 
         // Prevent certain keys from being bound
-        for (x in keys)
-        {
-            if (x != tempKey)
-                notAllowed.push(x);
-        }
-
         for (x in keyBlacklist)
         {
             notAllowed.push(x);
         }
-
-        
-
         for (x in notAllowed)
         {
             if (x == key)
