@@ -32,7 +32,7 @@ class OptionsMenu extends MusicBeatState
 		'Lyrics',				// 6
 		'Song Indicator',		// 7
 		'Unknown Icons',		// 8
-		'Downscroll'			// 9
+		'MISC OPTIONS'
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -201,17 +201,12 @@ class OptionsMenu extends MusicBeatState
 						STOptionsRewrite._variables.unknownIcons = false;
 					}
 				case 9:
-					if (STOptionsRewrite._variables.downscroll == false)
-						STOptionsRewrite._variables.downscroll = true;
-					else
-						STOptionsRewrite._variables.downscroll = false;
+					FlxG.switchState(new MiscOptionsState());
 			}
 		}
 
 		if (controls.BACK) {
 			STOptionsRewrite.Save();
-			// ONCE AGAIN, I HAVE BESTED MusicBeatState.hx, FORCING THE PlayerSettings.hx INTO DOING
-			// THE BIDDING THAT MusicBeatState.hx PREVENTED!
 			PlayerSettings.player1.controls.setKeyboardScheme(Controls.KeyboardScheme.Solo);
 			trace("SAVED & CHANGED KEYBINDS!");
 			FlxG.switchState(new MainMenuState());
@@ -271,11 +266,6 @@ class OptionsMenu extends MusicBeatState
 		} else {
 			grpOptionsIndicator.members[8].animation.play("true");
 		}
-
-		if (STOptionsRewrite._variables.downscroll == false)
-			grpOptionsIndicator.members[9].animation.play("false");
-		else
-			grpOptionsIndicator.members[9].animation.play("true");
 
 		// alpha shit
 		for (i in 0...textMenuItems.length) {
