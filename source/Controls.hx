@@ -1,5 +1,6 @@
 package;
 
+import flixel.input.keyboard.FlxKeyboard;
 import flixel.FlxG;
 import flixel.input.FlxInput;
 import flixel.input.actions.FlxAction;
@@ -633,150 +634,29 @@ class Controls extends FlxActionSet
 
 	public function setKeyboardScheme(scheme:KeyboardScheme, reset = true)
 	{
-		if (reset)
-			removeKeyboard();
+		loadBinds();
+	}
 
-		keyboardScheme = scheme;
-		
-		#if (haxe >= "4.0.0")
-		switch (scheme)
-		{
-			case Solo:
-				if (STOptionsRewrite._variables.inputMode == 1) {
-					inline bindKeys(Control.NOTE_UP, [J, FlxKey.UP]);
-					inline bindKeys(Control.NOTE_DOWN, [F, FlxKey.DOWN]);
-					inline bindKeys(Control.NOTE_LEFT, [D, FlxKey.LEFT]);
-					inline bindKeys(Control.NOTE_RIGHT, [K, FlxKey.RIGHT]);
-				} else {
-					inline bindKeys(Control.NOTE_UP, [W, FlxKey.UP]);
-					inline bindKeys(Control.NOTE_DOWN, [S, FlxKey.DOWN]);
-					inline bindKeys(Control.NOTE_LEFT, [A, FlxKey.LEFT]);
-					inline bindKeys(Control.NOTE_RIGHT, [D, FlxKey.RIGHT]);
-				}
+	public function loadBinds()
+	{
+		trace("Loaded Keybinds!");
+		removeKeyboard();
 
+		// Set binds based off the options
+		inline bindKeys(Control.UP, [FlxKey.fromString(STOptionsRewrite._variables.upBind), FlxKey.UP]);
+		inline bindKeys(Control.DOWN, [FlxKey.fromString(STOptionsRewrite._variables.downBind), FlxKey.DOWN]);
+		inline bindKeys(Control.LEFT, [FlxKey.fromString(STOptionsRewrite._variables.leftBind), FlxKey.LEFT]);
+		inline bindKeys(Control.RIGHT, [FlxKey.fromString(STOptionsRewrite._variables.rightBind), FlxKey.RIGHT]);
 
-				inline bindKeys(Control.UP, [W, FlxKey.UP]);
-				inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
-				inline bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
-				inline bindKeys(Control.RIGHT, [D, FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
-				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
-				inline bindKeys(Control.RESET, [R]);
-				inline bindKeys(Control.CHEAT, [C]);
+		// Default FNF binds
+		inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
+		inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
+		inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
+		inline bindKeys(Control.RESET, [R]);
 
-			case Duo(true):
-				if (STOptionsRewrite._variables.inputMode == 1) {
-					inline bindKeys(Control.NOTE_UP, [J]);
-					inline bindKeys(Control.NOTE_DOWN, [F]);
-					inline bindKeys(Control.NOTE_LEFT, [D]);
-					inline bindKeys(Control.NOTE_RIGHT, [K]);
-				} else {
-					inline bindKeys(Control.NOTE_UP, [W]);
-					inline bindKeys(Control.NOTE_DOWN, [S]);
-					inline bindKeys(Control.NOTE_LEFT, [A]);
-					inline bindKeys(Control.NOTE_RIGHT, [D]);
-				}
-
-				inline bindKeys(Control.UP, [W]);
-				inline bindKeys(Control.DOWN, [S]);
-				inline bindKeys(Control.LEFT, [A]);
-				inline bindKeys(Control.RIGHT, [D]);
-				inline bindKeys(Control.ACCEPT, [G, Z]);
-				inline bindKeys(Control.BACK, [H, X]);
-				inline bindKeys(Control.PAUSE, [ONE]);
-				inline bindKeys(Control.RESET, [R]);
-
-				if (STOptionsRewrite._variables.debug == true) {
-					inline bindKeys(Control.CHEAT, [C]);
-				}
-			case Duo(false):
-				inline bindKeys(Control.UP, [FlxKey.UP]);
-				inline bindKeys(Control.DOWN, [FlxKey.DOWN]);
-				inline bindKeys(Control.LEFT, [FlxKey.LEFT]);
-				inline bindKeys(Control.RIGHT, [FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [O]);
-				inline bindKeys(Control.BACK, [P]);
-				inline bindKeys(Control.PAUSE, [ENTER]);
-				inline bindKeys(Control.RESET, [BACKSPACE]);
-
-				if (STOptionsRewrite._variables.debug == true) {
-					inline bindKeys(Control.CHEAT, [C]);
-				}
-			case None: // nothing
-			case Custom: // nothing
-		}
-		#else
-		switch (scheme)
-		{
-			case Solo:
-				if (STOptionsRewrite._variables.inputMode == 1) {
-					bindKeys(Control.NOTE_UP, [J, FlxKey.UP]);
-					bindKeys(Control.NOTE_DOWN, [F, FlxKey.DOWN]);
-					bindKeys(Control.NOTE_LEFT, [D, FlxKey.LEFT]);
-					bindKeys(Control.NOTE_RIGHT, [K, FlxKey.RIGHT]);
-				} else {
-					bindKeys(Control.NOTE_UP, [W, FlxKey.UP]);
-					bindKeys(Control.NOTE_DOWN, [S, FlxKey.DOWN]);
-					bindKeys(Control.NOTE_LEFT, [A, FlxKey.LEFT]);
-					bindKeys(Control.NOTE_RIGHT, [D, FlxKey.RIGHT]);
-				}
-
-
-				bindKeys(Control.UP, [W, FlxKey.UP]);
-				bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
-				bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
-				bindKeys(Control.RIGHT, [D, FlxKey.RIGHT]);
-				bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
-				bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-				bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
-				bindKeys(Control.RESET, [R]);
-
-				if (STOptionsRewrite._variables.debug == true) {
-					bindKeys(Control.CHEAT, [C]);
-				}
-			case Duo(true):
-				if (STOptionsRewrite._variables.inputMode == 1) {
-					bindKeys(Control.NOTE_UP, [J]);
-					bindKeys(Control.NOTE_DOWN, [F]);
-					bindKeys(Control.NOTE_LEFT, [D]);
-					bindKeys(Control.NOTE_RIGHT, [K]);
-				} else {
-					bindKeys(Control.NOTE_UP, [W]);
-					bindKeys(Control.NOTE_DOWN, [S]);
-					bindKeys(Control.NOTE_LEFT, [A]);
-					bindKeys(Control.NOTE_RIGHT, [D]);
-				}
-
-				bindKeys(Control.UP, [W]);
-				bindKeys(Control.DOWN, [S]);
-				bindKeys(Control.LEFT, [A]);
-				bindKeys(Control.RIGHT, [D]);
-				bindKeys(Control.ACCEPT, [G, Z]);
-				bindKeys(Control.BACK, [H, X]);
-				bindKeys(Control.PAUSE, [ONE]);
-				bindKeys(Control.RESET, [R]);
-
-				if (STOptionsRewrite._variables.debug == true) {
-					inline bindKeys(Control.CHEAT, [C]);
-				}
-			case Duo(false):
-				bindKeys(Control.UP, [FlxKey.UP]);
-				bindKeys(Control.DOWN, [FlxKey.DOWN]);
-				bindKeys(Control.LEFT, [FlxKey.LEFT]);
-				bindKeys(Control.RIGHT, [FlxKey.RIGHT]);
-				bindKeys(Control.ACCEPT, [O]);
-				bindKeys(Control.BACK, [P]);
-				bindKeys(Control.PAUSE, [ENTER]);
-				bindKeys(Control.RESET, [BACKSPACE]);
-
-				if (STOptionsRewrite._variables.debug == true) {
-					inline bindKeys(Control.CHEAT, [C]);
-				}
-			case None: // nothing
-			case Custom: // nothing
-		}
-		#end
+		// Cheat bind the cheat button if we have Debug enabled
+		if (STOptionsRewrite._variables.debug)
+			inline bindKeys(Control.CHEAT, [C]);
 	}
 
 	function removeKeyboard()
