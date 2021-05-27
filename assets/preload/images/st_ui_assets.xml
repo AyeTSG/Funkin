@@ -2,10 +2,9 @@
 <TextureAtlas imagePath="st_ui_assets.png">
 	<!-- Created with Adobe Animate version 19.2.0.405 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="backspace indicator0000" x="10" y="128" width="280" height="106"/>
-	<SubTexture name="backspace-pixel indicator0000" x="10" y="10" width="280" height="108"/>
-	<SubTexture name="checkmark0000" x="300" y="10" width="143" height="137"/>
-	<SubTexture name="dfjk0000" x="10" y="342" width="261" height="88"/>
-	<SubTexture name="wasd0000" x="10" y="244" width="272" height="88"/>
-	<SubTexture name="xmark0000" x="300" y="157" width="139" height="137"/>
+	<SubTexture name="backspace indicator0000" x="10" y="10" width="280" height="106"/>
+	<SubTexture name="backspace-pixel indicator0000" x="10" y="126" width="280" height="108"/>
+	<SubTexture name="checkmark0000" x="300" y="126" width="143" height="137"/>
+	<SubTexture name="netural0000" x="10" y="273" width="135" height="131"/>
+	<SubTexture name="xmark0000" x="155" y="273" width="139" height="137"/>
 </TextureAtlas>
