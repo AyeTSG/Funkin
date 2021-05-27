@@ -17,7 +17,6 @@ class OptionsMenu extends MusicBeatState
 
 	// var selector:FlxSprite = new FlxSprite().makeGraphic(5, 5, FlxColor.RED);
 	var grpOptionsTexts:FlxTypedGroup<Alphabet>;
-	var grpOptionsIndicator:FlxTypedGroup<FlxSprite>;
 
 	var inputGraphic:FlxSprite;
 
@@ -50,7 +49,6 @@ class OptionsMenu extends MusicBeatState
 		{
 			var optionText:Alphabet = new Alphabet(16, 20 + (i * 70), textMenuItems[i], true);
 			optionText.ID = i;
-
 			optionText.x += 70;
 
 			optionText.alpha = 0.5;
@@ -58,36 +56,6 @@ class OptionsMenu extends MusicBeatState
 			grpOptionsTexts.add(optionText);
 		}
 		
-		// Options menu indicators
-		grpOptionsIndicator = new FlxTypedGroup<FlxSprite>();
-		add(grpOptionsIndicator);
-
-		for (i in 0...textMenuItems.length)
-		{
-			var optionIndicator:FlxSprite = new FlxSprite(16, 20 + (i * 70));
-			optionIndicator.ID = i;
-
-			optionIndicator.frames = Paths.getSparrowAtlas('st_ui_assets');
-			optionIndicator.animation.addByPrefix("true", "checkmark", 24, false);
-			optionIndicator.animation.addByPrefix("false", "xmark", 24, false);
-			optionIndicator.antialiasing = true;
-
-			// default anim true
-			optionIndicator.animation.play("true");
-
-			optionIndicator.scale.x = 0.4;
-			optionIndicator.scale.y = 0.4;
-
-			/*
-			optionIndicator.x = optionIndicator.x - (optionIndicator.width / 2);
-			*/
-			optionIndicator.x -= 88;
-			optionIndicator.y -= 26;
-
-			optionIndicator.alpha = 0.6;
-
-			grpOptionsIndicator.add(optionIndicator);
-		}
 		super.create();
 
 		// Yaknow what, fuck you! *un-substates your menu*
@@ -136,11 +104,9 @@ class OptionsMenu extends MusicBeatState
 		// alpha shit
 		for (i in 0...textMenuItems.length) {
 			grpOptionsTexts.members[i].alpha = 0.6;
-			grpOptionsIndicator.members[i].alpha = 0.6;
 		}
 
 		grpOptionsTexts.members[curSelected].alpha = 1;
-		grpOptionsIndicator.members[curSelected].alpha = 1;
 
 		if (curSelected == 4)
 			inputGraphic.alpha = 1;
