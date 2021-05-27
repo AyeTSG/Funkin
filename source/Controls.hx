@@ -639,24 +639,32 @@ class Controls extends FlxActionSet
 
 	public function loadBinds()
 	{
-		trace("Loaded Keybinds!");
 		removeKeyboard();
-
 		// Set binds based off the options
-		inline bindKeys(Control.UP, [FlxKey.fromString(STOptionsRewrite._variables.upBind), FlxKey.UP]);
-		inline bindKeys(Control.DOWN, [FlxKey.fromString(STOptionsRewrite._variables.downBind), FlxKey.DOWN]);
-		inline bindKeys(Control.LEFT, [FlxKey.fromString(STOptionsRewrite._variables.leftBind), FlxKey.LEFT]);
-		inline bindKeys(Control.RIGHT, [FlxKey.fromString(STOptionsRewrite._variables.rightBind), FlxKey.RIGHT]);
+
+		// NOTE TO SELF: FUCKING REMEMBER THAT WE'RE USING THE WEEK 7 INPUT SYSTEM OH MY GOD
+		// I SPENT LIKE AN HOUR TRYING TO TROUBLESHOOT KEYS NOT BINDING LMAOOO
+		inline bindKeys(Control.NOTE_UP, [FlxKey.fromString(STOptionsRewrite._variables.upBind)]);
+		inline bindKeys(Control.NOTE_DOWN, [FlxKey.fromString(STOptionsRewrite._variables.downBind)]);
+		inline bindKeys(Control.NOTE_LEFT, [FlxKey.fromString(STOptionsRewrite._variables.leftBind)]);
+		inline bindKeys(Control.NOTE_RIGHT, [FlxKey.fromString(STOptionsRewrite._variables.rightBind)]);
 
 		// Default FNF binds
+		inline bindKeys(Control.UP, [W, FlxKey.UP]);
+		inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
+		inline bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
+		inline bindKeys(Control.RIGHT, [D, FlxKey.RIGHT]);
+
 		inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
 		inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 		inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 		inline bindKeys(Control.RESET, [R]);
 
-		// Cheat bind the cheat button if we have Debug enabled
+		// Bind the cheat button if we have Debug enabled
 		if (STOptionsRewrite._variables.debug)
 			inline bindKeys(Control.CHEAT, [C]);
+
+		trace("Loaded Keybinds!");
 	}
 
 	function removeKeyboard()
