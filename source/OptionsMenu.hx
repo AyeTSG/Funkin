@@ -32,14 +32,26 @@ class OptionsMenu extends MusicBeatState
 	override function create()
 	{
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		// controlsStrings = CoolUtil.coolTextFile(Paths.txt('controls'));
-		menuBG.color = 0xFFea71fd;
+
+		menuBG.color = 0x7a58b0;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
 		menuBG.antialiasing = true;
 		add(menuBG);
 
+		// Options title
+		var optionsTitle:FlxSprite = new FlxSprite();
+
+		optionsTitle.frames = Paths.getSparrowAtlas('FNF_main_menu_assets');
+		optionsTitle.animation.addByPrefix('title', "options white", 15);
+		optionsTitle.animation.play('title');
+		optionsTitle.x = 345;
+		optionsTitle.y = 100;
+		add(optionsTitle);
+
+		optionsTitle.scrollFactor.set();
+		optionsTitle.antialiasing = true;
 
 		// Options menu text
 		grpOptionsTexts = new FlxTypedGroup<Alphabet>();
@@ -47,9 +59,9 @@ class OptionsMenu extends MusicBeatState
 
 		for (i in 0...textMenuItems.length)
 		{
-			var optionText:Alphabet = new Alphabet(16, 20 + (i * 70), textMenuItems[i], true);
+			var optionText:Alphabet = new Alphabet(16, 350 + (i * 70), textMenuItems[i], true, false);
 			optionText.ID = i;
-			optionText.x += 70;
+			optionText.screenCenter(X);
 
 			optionText.alpha = 0.5;
 			
