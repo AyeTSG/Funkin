@@ -2275,9 +2275,6 @@ class PlayState extends MusicBeatState
 					if (daNote.tooLate || !daNote.wasGoodHit)
 					{
 						health -= 0.0475;
-						// ST: Lower song score when not pressing keys at all
-						songScore -= 10;
-						misses++;
 						notesHit -= 1;	// >:( bad player! No accuracy increase for you!
 						vocals.volume = 0;
 					}
