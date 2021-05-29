@@ -2203,7 +2203,7 @@ class PlayState extends MusicBeatState
 				if (STOptionsRewrite._variables.downscroll)
 				{
 					if (daNote.isSustainNote
-						&& daNote.y + daNote.offset.y >= strumLine.y + Note.swagWidth / 2
+						&& 50 + daNote.y - daNote.offset.y >= strumLine.y + Note.swagWidth / 2
 						&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
 					{
 						var swagRect = new FlxRect(0, strumLine.y + Note.swagWidth / 2 + daNote.y, daNote.width * 2, daNote.height * 8);
