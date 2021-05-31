@@ -37,6 +37,9 @@ typedef Variables = {
     var missCounter:Bool;
     var accuracyMeter:Bool;
     var downscroll:Bool;
+    var cameraMovement:Bool;
+    var backgroundMovement:Bool;
+    // Controls
     var upBind:String;
     var downBind:String;
     var leftBind:String;
@@ -85,6 +88,8 @@ class STOptionsRewrite
                 missCounter: true,
                 accuracyMeter: true,
                 downscroll: false,
+                cameraMovement: true,
+                backgroundMovement: true,
                 upBind: "W",
                 downBind: "S",
                 leftBind: "A",
