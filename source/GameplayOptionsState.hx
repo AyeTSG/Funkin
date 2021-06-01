@@ -18,8 +18,8 @@ class GameplayOptionsState extends MusicBeatState
         "Unknown Icons",    // 2
         "Instrumental Mode",// 3
         "Downscroll",       // 4
-        "Camera Movement",  // 5
-        "BG Movement"       // 6
+        // "Camera Movement",  // 5
+        // "BG Movement"       // 6
     ];
 
 
@@ -138,18 +138,18 @@ class GameplayOptionsState extends MusicBeatState
                     } else {
                         STOptionsRewrite._variables.downscroll = true;
                     }
-                case 5:
-                    if (STOptionsRewrite._variables.cameraMovement) {
-                        STOptionsRewrite._variables.cameraMovement = false;
-                    } else {
-                        STOptionsRewrite._variables.cameraMovement = true;
-                    }
-                case 6:
-                    if (STOptionsRewrite._variables.backgroundMovement) {
-                        STOptionsRewrite._variables.backgroundMovement = false;
-                    } else {
-                        STOptionsRewrite._variables.backgroundMovement = true;
-                    }  
+                // case 5:
+                //     if (STOptionsRewrite._variables.cameraMovement) {
+                //         STOptionsRewrite._variables.cameraMovement = false;
+                //     } else {
+                //         STOptionsRewrite._variables.cameraMovement = true;
+                //     }
+                // case 6:
+                //     if (STOptionsRewrite._variables.backgroundMovement) {
+                //         STOptionsRewrite._variables.backgroundMovement = false;
+                //     } else {
+                //         STOptionsRewrite._variables.backgroundMovement = true;
+                //     }  
             }
         }
 
@@ -184,15 +184,15 @@ class GameplayOptionsState extends MusicBeatState
         else
             grpOptionsIndicator.members[4].animation.play("false");
 
-        if (STOptionsRewrite._variables.cameraMovement)
-            grpOptionsIndicator.members[5].animation.play("true");
-        else
-            grpOptionsIndicator.members[5].animation.play("false");
+        // if (STOptionsRewrite._variables.cameraMovement)
+        //     grpOptionsIndicator.members[5].animation.play("true");
+        // else
+        //     grpOptionsIndicator.members[5].animation.play("false");
 
-        if (STOptionsRewrite._variables.backgroundMovement)
-            grpOptionsIndicator.members[6].animation.play("true");
-        else
-            grpOptionsIndicator.members[6].animation.play("false");
+        // if (STOptionsRewrite._variables.backgroundMovement)
+        //     grpOptionsIndicator.members[6].animation.play("true");
+        // else
+        //     grpOptionsIndicator.members[6].animation.play("false");
 
         // Change alpha when selecting an item
         for (i in 0...menuItems.length) {
