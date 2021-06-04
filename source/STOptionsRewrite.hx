@@ -60,8 +60,8 @@ class STOptionsRewrite
     // load from config.json
     public static function Load():Void
     {
-        // if we dont have a config.json, set default values
-        if (!FileSystem.exists('config.json'))
+        // Generates the config file if it doesn't exist, or if its outdated
+        if (!FileSystem.exists('config.json') || checkSTVersion() == false)
         {
             _variables = {
                 STVersion: "3.1.0",
@@ -104,49 +104,6 @@ class STOptionsRewrite
             // load current values
             var data:String = File.getContent('config.json');
             _variables = Json.parse(data);
-        }
-        // Regenerate config when we're out of date.
-        // This WILL reset everything to default values.
-        if (checkSTVersion() == false)
-        {
-            _variables = {
-                STVersion: "3.1.0",
-                customIntro: true,
-                debug: false,
-                disableFNFVersionCheck: true,
-                discordRPC: true,
-                extraDialogue: true,
-                extraSongs: true,
-                fixMonsterIconFreeplay: true,
-                fixScoreLayout: true,
-                fixWeek6CountSounds: true,
-                hideOptionsMenu: false,
-                instMode: false,
-                logNG: true,
-                lyrics: true,
-                makeSpacesConsistent: true,
-                monsterIntro: true,
-                noticeEnabled: false,
-                outlinePauseInfo: true,
-                outlineScore: true,
-                songIndicator: true,
-                startWHP2Invis: true,
-                unknownIcons: true,
-                updatedInputSystem: true,
-                missCounter: true,
-                accuracyMeter: true,
-                downscroll: false,
-                cameraMovement: true,
-                backgroundMovement: true,
-                upBind: "W",
-                downBind: "S",
-                leftBind: "A",
-                rightBind: "D"
-            };
-
-            Save();
-
-            trace("Reset config.json");
         }
     }
 
