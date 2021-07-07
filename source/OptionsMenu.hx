@@ -26,13 +26,12 @@ class OptionsMenu extends MusicBeatState
 		'Debug Mode',			// 0
 		'Discord RPC',			// 1
 		'Extra Dialogue', 		// 2
-		'Extra Songs',			// 3
-		'Input Mode',			// 4
-		'Instrumental Mode',	// 5
-		'Lyrics',				// 6
-		'Song Indicator',		// 7
-		'Unknown Icons',		// 8
-		'Downscroll'			// 9
+		'Input Mode',			// 3
+		'Instrumental Mode',	// 4
+		'Lyrics',				// 5
+		'Song Indicator',		// 6
+		'Unknown Icons',		// 7
+		'Downscroll'			// 8
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -97,7 +96,7 @@ class OptionsMenu extends MusicBeatState
 		}
 
 		// input mode graphic
-		inputGraphic = new FlxSprite(grpOptionsTexts.members[4].x, grpOptionsTexts.members[4].y);
+		inputGraphic = new FlxSprite(grpOptionsTexts.members[3].x, grpOptionsTexts.members[3].y);
 		inputGraphic.frames = Paths.getSparrowAtlas('st_ui_assets');
 		inputGraphic.animation.addByPrefix("wasd", "wasd", 24, false);
 		inputGraphic.animation.addByPrefix("dfjk", "dfjk", 24, false);
@@ -161,12 +160,6 @@ class OptionsMenu extends MusicBeatState
 						STOptionsRewrite._variables.extraDialogue = false;
 					}
 				case 3:
-					if (STOptionsRewrite._variables.extraSongs == false) {
-						STOptionsRewrite._variables.extraSongs = true;
-					} else {
-						STOptionsRewrite._variables.extraSongs = false;
-					}
-				case 4:
 					if (STOptionsRewrite._variables.inputMode == 0) {
 						//grpOptionsTexts.members[4].text = "Input Mode DFJK";
 						inputGraphic.animation.play("dfjk");
@@ -176,31 +169,31 @@ class OptionsMenu extends MusicBeatState
 						inputGraphic.animation.play("wasd");
 						STOptionsRewrite._variables.inputMode = 0;
 					}
-				case 5:
+				case 4:
 					if (STOptionsRewrite._variables.instMode == false) {
 						STOptionsRewrite._variables.instMode = true;
 					} else {
 						STOptionsRewrite._variables.instMode = false;
 					}
-				case 6:
+				case 5:
 					if (STOptionsRewrite._variables.lyrics == false) {
 						STOptionsRewrite._variables.lyrics = true;
 					} else {
 						STOptionsRewrite._variables.lyrics = false;
 					}
-				case 7:
+				case 6:
 					if (STOptionsRewrite._variables.songIndicator == false) {
 						STOptionsRewrite._variables.songIndicator = true;
 					} else {
 						STOptionsRewrite._variables.songIndicator = false;
 					}
-				case 8:
+				case 7:
 					if (STOptionsRewrite._variables.unknownIcons == false) {
 						STOptionsRewrite._variables.unknownIcons = true;
 					} else {
 						STOptionsRewrite._variables.unknownIcons = false;
 					}
-				case 9:
+				case 8:
 					if (STOptionsRewrite._variables.downscroll == false)
 						STOptionsRewrite._variables.downscroll = true;
 					else
@@ -233,12 +226,6 @@ class OptionsMenu extends MusicBeatState
 			grpOptionsIndicator.members[2].animation.play("true");
 		}
 
-		if (STOptionsRewrite._variables.extraSongs == false) {
-			grpOptionsIndicator.members[3].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[3].animation.play("true");
-		}
-
 		if (STOptionsRewrite._variables.inputMode == 0) {
 			inputGraphic.animation.play("wasd");
 		} else {
@@ -246,33 +233,33 @@ class OptionsMenu extends MusicBeatState
 		}
 
 		if (STOptionsRewrite._variables.instMode == false) {
+			grpOptionsIndicator.members[4].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[4].animation.play("true");
+		}
+
+		if (STOptionsRewrite._variables.lyrics == false) {
 			grpOptionsIndicator.members[5].animation.play("false");
 		} else {
 			grpOptionsIndicator.members[5].animation.play("true");
 		}
 
-		if (STOptionsRewrite._variables.lyrics == false) {
+		if (STOptionsRewrite._variables.songIndicator == false) {
 			grpOptionsIndicator.members[6].animation.play("false");
 		} else {
 			grpOptionsIndicator.members[6].animation.play("true");
 		}
 
-		if (STOptionsRewrite._variables.songIndicator == false) {
+		if (STOptionsRewrite._variables.unknownIcons == false) {
 			grpOptionsIndicator.members[7].animation.play("false");
 		} else {
 			grpOptionsIndicator.members[7].animation.play("true");
 		}
 
-		if (STOptionsRewrite._variables.unknownIcons == false) {
-			grpOptionsIndicator.members[8].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[8].animation.play("true");
-		}
-
 		if (STOptionsRewrite._variables.downscroll == false)
-			grpOptionsIndicator.members[9].animation.play("false");
+			grpOptionsIndicator.members[8].animation.play("false");
 		else
-			grpOptionsIndicator.members[9].animation.play("true");
+			grpOptionsIndicator.members[8].animation.play("true");
 
 		// alpha shit
 		for (i in 0...textMenuItems.length) {
@@ -284,7 +271,7 @@ class OptionsMenu extends MusicBeatState
 		grpOptionsTexts.members[curSelected].alpha = 1;
 		grpOptionsIndicator.members[curSelected].alpha = 1;
 
-		if (curSelected == 4)
+		if (curSelected == 3)
 			inputGraphic.alpha = 1;
 	}
 

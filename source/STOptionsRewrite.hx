@@ -14,7 +14,6 @@ typedef Variables = {
     var debug:Bool;
     var discordRPC:Bool;
     var extraDialogue:Bool;
-    var extraSongs:Bool;
     var fixMonsterIconFreeplay:Bool;
     var fixScoreLayout:Bool;
     var fixWeek6CountSounds:Bool;
@@ -59,7 +58,6 @@ class STOptionsRewrite
                 disableFNFVersionCheck: true,
                 discordRPC: true,
                 extraDialogue: true,
-                extraSongs: true,
                 fixMonsterIconFreeplay: true,
                 fixScoreLayout: true,
                 fixWeek6CountSounds: true,
